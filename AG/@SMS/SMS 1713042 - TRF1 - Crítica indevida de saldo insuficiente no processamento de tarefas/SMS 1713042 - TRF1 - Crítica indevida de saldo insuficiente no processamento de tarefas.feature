@@ -9,5 +9,5 @@ Cenário:Faturando um ou mais PEGs com valor exato do empenho
 Dado que se tenha um ou mais PEGs em fase pronto
 E o valor deles seja exatamente o mesmo saldo do empenho
 Quando o usuário processar o pagamento 
-Então deve ser faturada com sucesso
-E o saldo do empenho deve ser zerado
+Então deverá ser faturada com sucesso
+E o saldo do empenho deverá ser zerado
