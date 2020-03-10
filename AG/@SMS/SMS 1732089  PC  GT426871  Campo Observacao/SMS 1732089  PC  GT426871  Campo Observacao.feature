@@ -1,8 +1,35 @@
-Funcionalidade: Digitar uma Guia com o campo OBSERVAÇÃO/JUSTIFICATIVA incluso 
+Funcionalidade:Criar campo Observação/Justificativa no modelo guia e manipular o campo OBSERVAÇÃO/JUSTIFICATIVA incluso 
     #SMS 1732089 - PC - GT426871 - Campo Observação
     Disponibilizar este campo na parametrização dos modelos de guias e habilitar na interface de digitação de Guias.
     O campo “Observação” deverá disponibilizar 500 caracteres.
 
+    Cenário: Processar atualização para incluir campo no sistema
+    #[ADM]> Atualizações> "1543-Inclusão do campo Observação/Justificativa no modelo de guia"
+        Dado que se esteja na atualização 1543
+        E ela esteja em situação "Aberta"
+        Quando Processar a atualização
+        Então deverá ser processada com sucesso
+        E o campo Observação/Justificativa deverá ser criado no sistema
+    
+    Cenário: Criar campo do modelo de guia Observação/Justificativa nas tabelas do sistema
+    #[ADM]> Tabelas do Sistema> Campos do modelo da guia e evento> Guia>Botão incluir "+"
+        Dado que se tenha processado a atualização 1543
+        E o processo tenha finalizado com sucesso
+        Quando o usuário incluir o campo <OBSERVACAOJUSTIFICATIVA> no modelo de guia do sistema
+        E salvar a inclusão 
+        Então o campo deverá ser incluido com sucesso 
+        E deverá aparecer para ser criado na tabelas do cliente
+
+    Cenário: Criar o campo nos modelos de guia nas tabelas do cliente
+    #[ADM]> Tabelas do cliente> Tipos de guias> Modelos de guias> Campos> Guias>Botão incluir "+"
+        Dado que se tenha incluido o campo <OBSERVACAOJUSTIFICATIVA> nas tabelas do sistema
+        Quando o usuário incluir um novo campo no modelo de guia
+        E este campo seja o <OBSERVACAOJUSTIFICATIVA> 
+        E tentar salvar a inclusão
+        Então o campo deverá ser salvo com sucesso
+        E o campo deverá aparecer no modelo de guia selecionado        
+    
+    
     Cenário: Verificar existencia do campo Observação/Justificativa nas GUIAS Normais ou Reapresentadas pela interface de Digitação
     #[Processamento de contas]> Competências de PEG> Filiais> Em digitação ou botão <Digitação/Analise de PEG>
         Dado que se tenha um ou mais PEGs
